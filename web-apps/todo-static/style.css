@@ -1,15 +1,182 @@
-:root{--bg:#f7fafc;--card:#ffffff;--accent:#2563eb;--muted:#6b7280}
-*{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Helvetica,Arial}
-body{margin:0;background:var(--bg);color:#111}
-.container{max-width:720px;margin:48px auto;padding:24px}
-h1{margin:0 0 16px;font-size:28px}
-#todo-form{display:flex;gap:8px;margin-bottom:16px}
-#todo-form input{flex:1;padding:10px;border:1px solid #e5e7eb;border-radius:6px}
-#todo-form button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:6px;cursor:pointer}
-.todos{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
-.todo{background:var(--card);padding:12px;border-radius:8px;display:flex;align-items:center;gap:10px;border:1px solid #e6edf8}
-.todo .meta{flex:1}
-.todo .title{font-weight:600}
-.todo .desc{color:var(--muted);font-size:13px}
-.todo button{background:#ef4444;color:#fff;border:none;padding:6px 10px;border-radius:6px;cursor:pointer}
-.todo input[type=checkbox]{width:18px;height:18px}
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --muted: #64748b;
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 640px;
+  margin: 24px auto;
+  padding: 0 20px;
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  text-align: center;
+}
+
+/* Mobile-First Form Stack */
+#todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+#todo-form input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#todo-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+#todo-form button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#todo-form button:hover {
+  background: var(--accent-hover);
+}
+
+#todo-form button:active {
+  transform: scale(0.98);
+}
+
+/* Tasks List */
+.todos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.todo {
+  background: var(--card);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #f1f5f9;
+  box-shadow: var(--shadow);
+  animation: slideIn 0.3s ease-out;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.todo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.todo .meta {
+  flex: 1;
+}
+
+.todo .title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.todo .desc {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.todo button {
+  background: white;
+  color: var(--danger);
+  border: 1px solid #fee2e2;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.todo button:hover {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.todo input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desktop Adaptation */
+@media (min-width: 600px) {
+  .container {
+    margin: 64px auto;
+  }
+
+  #todo-form {
+    flex-direction: row;
+    padding: 8px;
+    align-items: center;
+  }
+
+  #todo-form input {
+    border: none;
+  }
+
+  #todo-form input:focus {
+    box-shadow: none;
+  }
+
+  #todo-form button {
+    padding: 10px 24px;
+    width: auto;
+  }
+}
